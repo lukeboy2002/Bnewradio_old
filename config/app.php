@@ -169,6 +169,7 @@ return [
          */
         App\Providers\FortifyServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
         /*
          * Application Service Providers...
