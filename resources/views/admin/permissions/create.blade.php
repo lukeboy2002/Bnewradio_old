@@ -1,15 +1,14 @@
 <x-user-layout>
+    <x-cards.default>
+        <x-slot:heading>
+            <h2 id="applicant-information-title" class="text-lg leading-6 font-medium text-gray-900"><i class="fa-solid fa-notes-medical mr-2"></i>Add Permission</h2>
+            <p class="mt-1 max-w-2xl text-sm text-gray-500">Create a new Permission</p>
+        </x-slot:heading>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- We've used 3xl here, but feel free to try other max-widths based on your needs -->
-        <div class="max-w-3xl mx-auto">
-
-            <form action="{{ route('admin.permissions.store') }}" method="POST" class="space-y-6">
-                @csrf
-                <x-form.input name="name" placeholder="name" required />
-
-                <h3 class="text-xl font-bold text-red-700">Assign Permission to Roles</h3>
-                <div class="flex space-x-2">
+        <form action="{{ route('admin.permissions.store') }}" method="POST" class="space-y-6">
+            @csrf
+            <x-form.input type="text" name="name" required />
+            <div class="flex space-x-2">
                 @if(!$roles->isEmpty())
                     @foreach ($roles as $role)
                         <div class="flex items-center h-5">
@@ -26,11 +25,11 @@
                         </div>
                     @endforeach
                 @endif
-                </div>
-                <x-button.small>Register</x-button.small>
-            </form>
-
-        </div>
-    </div>
-
+            </div>
+            <div class="flex justify-end space-x-2">
+                <x-buttons.large type="button" onclick="history.back()" class="bg-gray-400">Cancel</x-buttons.large>
+                <x-buttons.large class="bg-red-700">Save</x-buttons.large>
+            </div>
+        </form>
+    </x-cards.default>
 </x-user-layout>

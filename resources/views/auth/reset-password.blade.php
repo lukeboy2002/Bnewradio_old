@@ -7,9 +7,9 @@
             @csrf
             <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-            <x-floatingform.input name="email" type="email" value="{{ $request->email }}" autocomplete="email" required />
-            <x-floatingform.input name="password" type="password" autocomplete="current-password" required />
-            <x-floatingform.input name="password_confirmation" type="password" autocomplete="new-password" required />
+            <x-form.input name="email" type="email" value="{{ $request->email }}" autocomplete="email" required />
+            <x-form.input name="password" type="password" autocomplete="current-password" required />
+            <x-form.input name="password_confirmation" type="password" autocomplete="new-password" required />
 
             <div>
                 <x-buttons.large class="bg-red-700 w-full">Submit</x-buttons.large>

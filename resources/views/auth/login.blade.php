@@ -6,13 +6,13 @@
 
             <form action="{{ route('login') }}" method="POST" class="space-y-6">
                 @csrf
-                <x-floatingform.input type="text" name="username" required />
-                <x-floatingform.input type="password" name="password" required />
+                <x-form.input type="text" name="username" required />
+                <x-form.input type="password" name="password" required />
 
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
-{{--                            <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">--}}
-{{--                            <label for="remember-me" class="ml-2 block text-sm text-gray-900"> Remember me </label>--}}
+                        {{--                            <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">--}}
+                        {{--                            <label for="remember-me" class="ml-2 block text-sm text-gray-900"> Remember me </label>--}}
                     </div>
                     <div class="text-sm">
                         <x-links.default x-on:click="isModalOpen = true" class="text-red-700">Forgot your password?</x-links.default>

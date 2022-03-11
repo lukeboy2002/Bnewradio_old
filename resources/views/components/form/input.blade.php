@@ -1,14 +1,16 @@
 @props(['name'])
 @php
-    $classes = 'appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-500 text-gray-500 focus:outline-none focus:ring-red-700 focus:border-red-700 sm:text-sm';
+    $classes = 'block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-red-700 peer';
 @endphp
 
 <x-form.field>
-    <input {{ $attributes->merge(['class' => $classes]) }}
-           name="{{ $name }}"
-           id="{{ $name }}"
-           aria-label="{{ $name }}"
-        {{ $attributes(['value' => old($name)]) }}
-    >
+<input {{ $attributes->merge(['class' => $classes]) }}
+       name="{{ $name }}"
+       id="{{ $name }}"
+       aria-label="{{ $name }}"
+       {{ $attributes(['value' => old($name)]) }}
+       placeholder=" "
+/>
+    <x-form.label name="{{ $name }}" />
     <x-form.error name="{{ $name }}"/>
 </x-form.field>

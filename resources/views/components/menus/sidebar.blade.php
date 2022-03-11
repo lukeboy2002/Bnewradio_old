@@ -1,15 +1,15 @@
-{{--@can('admin')--}}
-{{--    <x-links.main href="{{ route('admin.users.index') }}" :active="request()->routeIs('admin.user*')">--}}
-{{--        <i class="fas fa-users mr-2"></i>All users--}}
-{{--    </x-links.main>--}}
+@role('Admin')
+    <x-links.main href="{{ route('admin.users.index') }}" :active="request()->routeIs('admin.user*')">
+        <i class="fas fa-users mr-2"></i>All users
+    </x-links.main>
 
-{{--    <x-links.main href="{{ route('admin.roles.index') }}" :active="request()->routeIs('admin.roles*')">--}}
-{{--        <i class="fas fa-clipboard-list mr-2"></i>Roles--}}
-{{--    </x-links.main>--}}
+    <x-links.main href="{{ route('admin.roles.index') }}" :active="request()->routeIs('admin.roles*')">
+        <i class="fa-solid fa-folder-open mr-2"></i>Roles
+    </x-links.main>
 
-{{--    <x-links.main href="{{ route('admin.permissions.index') }}" :active="request()->routeIs('admin.permissions*')">--}}
-{{--        <i class="far fa-list-alt mr-2"></i>Permissions--}}
-{{--    </x-links.main>--}}
+    <x-links.main href="{{ route('admin.permissions.index') }}" :active="request()->routeIs('admin.permissions*')">
+        <i class="fa-solid fa-clipboard-list mr-2"></i>Permissions
+    </x-links.main>
 
     <x-links.main href="#">
         <i class="far fa-images mr-2"></i>Carousel
@@ -32,18 +32,18 @@
             <div class="w-full border-t border-gray-300"></div>
         </div>
     </div>
-{{--@endcan--}}
+@endrole
+
     <x-links.main href="{{ route('home') }}" :active="request()->routeIs('home')">
         <i class="fas fa-home mr-2"></i>Home
     </x-menu.links.main>
 
-    <x-links.main href="#">
-    {{--                        <x-links.main href="{{ route('tweet') }}" :active="request()->routeIs('tweet')">--}}
+    <x-links.main href="{{ route('tweet') }}" :active="request()->routeIs('tweet')">
         <i class="far fa-comment-dots mr-2"></i>Tweets
     </x-menu.links.main>
 
-    <x-links.main href="#">
-        {{--                        <x-links.main href="{{ route('explore') }}" :active="request()->routeIs('explore*')">--}}
+
+    <x-links.main href="{{ route('explore') }}" :active="request()->routeIs('explore*')">
         <i class="fas fa-globe-europe mr-2"></i>Explore
     </x-links.main>
 

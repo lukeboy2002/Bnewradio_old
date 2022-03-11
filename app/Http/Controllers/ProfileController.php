@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,16 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(){
+
+        $users = User::Paginate(10);
+        $roles = Role::all();
+
+        return view('profiles.index')
+            ->with([
+                'users' => $users,
+                'roles' => $roles
+            ]);
     }
 
     /**
@@ -44,10 +52,11 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(USER $user)
+    public function show(User $user)
     {
         return view('profiles.show', [
-            'user' => current_user(),
+            'user' => $user,
+            'tweets' => $user->tweets()->withLikes()->paginate(10),
         ]);
     }
 

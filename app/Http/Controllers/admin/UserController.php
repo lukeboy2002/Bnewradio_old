@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->paginate(2);
+        $users = User::latest()->paginate(10);
 
         return view('admin.users.index')
             ->with([
@@ -36,6 +36,8 @@ class UserController extends Controller
      */
     public function create()
     {
+//        $this->authorize('CreateUser', User::class);
+
         $roles = Role::get();
 
         return view('admin.users.create')
@@ -81,7 +83,7 @@ class UserController extends Controller
             $user->roles()->attach($request->roles);
         }
 
-        $request->session()->flash('success', 'User has been created');
+        $request->session()->flash('success, User has been created');
 
         return redirect()->route('admin.users.index');
     }
@@ -137,7 +139,7 @@ class UserController extends Controller
             $user->roles()->detach();
         }
 
-        $request->session()->flash('success', 'User successfully updated');
+        $request->session()->flash('success', "The user {$user->username} has been changed");
 
         return redirect()->route('admin.users.index');
     }

@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(UserSeeder::class);
+//        $this->call(UserSeeder::class);
+        $this->call(TweetSeeder::class);
 //        // Ask for confirmation to refresh migration
 //        if ($this->command->confirm('Do you wish to refresh migration before seeding, Make sure it will clear all old data ?')) {
 //            $this->command->call('migrate:refresh');

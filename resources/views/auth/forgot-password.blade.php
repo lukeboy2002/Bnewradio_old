@@ -11,7 +11,7 @@
                     <p class="text-sm text-gray-500 mb-3">
                         Don't worry! Just fill in your email and we'll send you a link to reset your password.
                     </p>
-                    <x-floatingform.input type="email" name="email" autocomplete="email" required />
+                    <x-form.input type="email" name="email" autocomplete="email" required />
                 </div>
             </div>
         </div>

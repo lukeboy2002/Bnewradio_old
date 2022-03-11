@@ -53,6 +53,7 @@ class PermissionController extends Controller
         $permission = new Permission();
         $permission->name = $request->name;
         $permission->save();
+
         if ($request->roles <> '') {
             foreach ($request->roles as $key=>$value) {
                 $role = Role::find($value);
@@ -84,9 +85,13 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
+        $permission = Permission::findOrFail($id);
+        $roles = Role::get();
+
         return view('admin.permissions.edit')
             ->with([
-                'permission' => $permission
+                'permission' => $permission,
+                'roles' => $roles
             ]);
     }
 
@@ -97,15 +102,22 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Permission $permission)
+
+    public function update(Request $request, $id)
     {
+        $permission = Permission::findOrFail($id);//Get role with the given id
+        //Validate name and permission fields
         $this->validate($request, [
             'name'=>'required',
         ]);
-        $permission->name=$request->name;
-        $permission->save();
 
-        $request->session()->flash('success', 'Permission'. $permission->name.' updated!');
+        $input = $request->except(['roles']);
+        $permission->fill($input)->save();
+        if($request->roles <> ''){
+            $permission->roles()->sync($request->roles);
+        }
+
+        $request->session()->flash('success', 'Permission updated successfully');
 
         return redirect()->route('admin.permissions.index');
     }

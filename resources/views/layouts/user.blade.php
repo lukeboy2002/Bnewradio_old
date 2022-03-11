@@ -12,21 +12,61 @@
     <livewire:styles />
 </head>
 
+@props(['header', 'main', 'aside'])
+
 <body class="antialiased relative h-full">
 <div class="min-h-full">
     <x-menus.top />
+    <x-messages />
 
+    <div class="max-w-3xl mx-auto sm:px-6 md:max-w-7xl md:px-8 md:grid md:grid-cols-12 md:gap-8">
+        <div class="hidden md:block md:col-span-3 lg:col-span-2">
+            <div class="sticky top-4 space-y-2 py-4">
+                <x-menus.sidebar />
+            </div>
+        </div>
 
-    <div>
-        <div class="max-w-3xl mx-auto sm:px-6 md:max-w-7xl md:px-8 md:grid md:grid-cols-12 md:gap-8">
-            <div class="hidden md:block md:col-span-3 lg:col-span-2">
-                <div class="sticky top-4 space-y-2 py-4">
-                    <x-menus.sidebar />
+        <div class="md:col-span-9 lg:col-span-10 py-4">
+            @if (isset($header) && $header != null )
+                {{ $header }}
+            @endif
+
+            @if (isset($aside) && $aside != null )
+            <div class="md:grid md:grid-cols-12 md:gap-4">
+                <div class="md:col-span-9">
+                    <div class="bg-white shadow sm:rounded-lg">
+                        <div>
+                            @if (isset($main) && $main != null )
+                                {{ $main }}
+                            @endif
+                        </div>
+                        <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
+                            {{ $slot }}
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="md:col-span-3">
+                    {{ $aside }}
+                </aside>
+            </div>
+            @else
+            <div class="md:grid md:grid-cols-12 md:gap-4">
+                <div class="md:col-span-12">
+                    <div class="bg-white shadow sm:rounded-lg">
+                        <div>
+                            @if (isset($main) && $main != null )
+                                {{ $main }}
+                            @endif
+                        </div>
+                        <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
+                            {{ $slot }}
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="md:col-span-9 lg:col-span-10 py-4">
-                {{ $slot }}
-            </div>
+            @endif
+
         </div>
     </div>
 

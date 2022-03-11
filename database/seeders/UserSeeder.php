@@ -16,16 +16,16 @@ class UserSeeder extends Seeder
     public function run()
     {
         $user = User::factory()
-            ->times(10)
+            ->times(20)
             ->create();
 
-        $user = User::create([
-            'username' => 'admin',
-            'email' => 'admin@admin.com',
-            'email_verified_at' => now(),
-            'password' => bcrypt('adminadmin'),
-            'avatar' => '/images/avatars/admin.png',
-            'remember_token' => Str::random(10),
-        ]);
+//        $user = User::create([
+//            'username' => 'admin',
+//            'email' => 'admin@admin.com',
+//            'email_verified_at' => now(),
+//            'password' => bcrypt('adminadmin'),
+//            'avatar' => '/images/avatars/admin.png',
+//            'remember_token' => Str::random(10),
+//        ]);
     }
 }

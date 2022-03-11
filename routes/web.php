@@ -4,7 +4,11 @@ use App\Http\Controllers\admin\PermissionController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\auth\LoginController;
+use App\Http\Controllers\ExploreController;
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TweetController;
+use App\Http\Controllers\TweetLikeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,9 +31,28 @@ Route::get('login/{provider}', [LoginController::class, 'redirectToProvider']);
 Route::get('login/{provider}/callback', [LoginController::class, 'handleProviderCallback']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    //CURRENT USER PROFILE
+    //SHOW PROFILE (Currentuser)
     Route::get('profiles/{user:username}', [ProfileController::class, 'show'])->name('profiles');
+    //EXPLORE USERS
+    Route::get('explore', [ExploreController::class, 'index'])->name('explore');
+    Route::get('explore/{user:username}', [ExploreController::class, 'show'])->name('explore.show');
+    //FOLLOW USER
+    Route::post('profiles/{user:username}/follow', [FollowController::class, 'store']);
+
+    //BTWEET
+    Route::get('tweets', [TweetController::class, 'index'])->name('tweet');
+    Route::post('tweets', [TweetController::class, 'store']);
+
+    //BTWEET LIKE/DISLIKE
+    Route::post('/tweets/{tweet}/like', [TweetLikeController::class, 'store']);
+    Route::delete('/tweets/{tweet}/like', [TweetLikeController::class, 'destroy']);
+});
+
+//CAN EDIT USER
+Route::middleware(['auth', 'verified', 'can:edit,user'])->group(function () {
+//PROFILE
     Route::get('profiles/{user:username}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('profiles/{user:username}', [ProfileController::class, 'update']);
 });
 
 //ADMIN ROUTES

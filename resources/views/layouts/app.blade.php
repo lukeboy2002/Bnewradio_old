@@ -17,7 +17,7 @@
 <body class="antialiased relative h-full">
 <div class="min-h-full">
     <x-menus.top />
-{{--    <x-m        essages />--}}
+{{--    <x-messages />--}}
 
     <div class="py-5">
         <main>

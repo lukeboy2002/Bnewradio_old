@@ -78,9 +78,10 @@ class LoginController extends Controller
                 ]
             );
 
-//            $role = Role::select('id')->where('name', 'user')->first();
+            $role = Role::select('id')->where('name', 'user')->first();
 
-//            $user->roles()->attach($role);
+            $user->roles()->attach($role);
+
             // Log the user in
             Auth::login($user, true);
 
