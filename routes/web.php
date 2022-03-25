@@ -6,6 +6,9 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\PostCommentController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TweetController;
 use App\Http\Controllers\TweetLikeController;
@@ -30,6 +33,13 @@ Route::get('/', function () {
 Route::get('login/{provider}', [LoginController::class, 'redirectToProvider']);
 Route::get('login/{provider}/callback', [LoginController::class, 'handleProviderCallback']);
 
+//NEWSLETTER
+Route::post('newsletter', NewsletterController::class)->name('newsletter');
+
+//BLOG
+Route::get('posts', [PostController::class, 'index'])->name('posts');
+Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     //SHOW PROFILE (Currentuser)
     Route::get('profiles/{user:username}', [ProfileController::class, 'show'])->name('profiles');
@@ -46,6 +56,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     //BTWEET LIKE/DISLIKE
     Route::post('/tweets/{tweet}/like', [TweetLikeController::class, 'store']);
     Route::delete('/tweets/{tweet}/like', [TweetLikeController::class, 'destroy']);
+
+/*    //BLOG COMMENT
+    Route::post('posts/{post:slug}/comments', [PostCommentController::class, 'store']);*/
+
 });
 
 //CAN EDIT USER

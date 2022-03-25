@@ -23,7 +23,7 @@ class PermissionMiddleware
         }
         if (Auth::user()->hasRole('User')) //If user has user role
         {
-            if ($request->is('posts/create'))//If user is creating a post
+            if ($request->is('posts/create'))//If user is creating a posts
             {
                 if (!Auth::user()->hasPermissionTo('addPost'))
                 {

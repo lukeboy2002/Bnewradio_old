@@ -70,9 +70,9 @@
         </div>
     </div>
 
-    {{--    <x-footer />--}}
-</div>
 
+</div>
+<x-footer />
 <!-- Scripts -->
 <livewire:scripts />
 <script src="{{ asset('js/app.js') }}"></script>

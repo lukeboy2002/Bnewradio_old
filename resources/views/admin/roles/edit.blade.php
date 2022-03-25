@@ -1,9 +1,9 @@
 <x-user-layout>
     <x-cards.default>
-        <x-slot:heading>
+        <x-slot:header>
             <h2 id="applicant-information-title" class="text-lg leading-6 font-medium text-gray-900"><i class="fa-solid fa-folder-open mr-2"></i>Edit Role</h2>
             <p class="mt-1 max-w-2xl text-sm text-gray-500">Change the Role</p>
-        </x-slot:heading>
+        </x-slot:header>
 
         <form action="{{ route('admin.roles.update', $role->id) }}" method="POST" class="space-y-6">
             @csrf

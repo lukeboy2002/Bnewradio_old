@@ -17,7 +17,7 @@
 <body class="antialiased relative h-full">
 <div class="min-h-full">
     <x-menus.top />
-{{--    <x-messages />--}}
+    <x-messages />
 
     <div class="py-5">
         <main>
@@ -27,7 +27,8 @@
         </main>
     </div>
 </div>
-{{--<x-footer />--}}
+
+<x-footer />
 
 <!-- Scripts -->
 <livewire:scripts />

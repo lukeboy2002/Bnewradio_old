@@ -1,9 +1,9 @@
 <x-user-layout>
     <x-cards.default>
-        <x-slot:heading>
+        <x-slot:header>
             <h2 id="applicant-information-title" class="text-lg leading-6 font-medium text-gray-900"><i class="fa-solid fa-user-plus mr-2"></i>Add User</h2>
             <p class="mt-1 max-w-2xl text-sm text-gray-500">Create a new user</p>
-        </x-slot:heading>
+        </x-slot:header>
         <form action="{{ route('admin.users.store') }}" method="POST" class="space-y-6">
             @csrf
             <x-form.input type="text" name="username" required />

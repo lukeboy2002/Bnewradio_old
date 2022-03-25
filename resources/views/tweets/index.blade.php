@@ -2,7 +2,8 @@
 
     <x-slot name="main">
         <div class="px-4 pt-5 sm:px-6">
-            @include('tweets._publish-panel')
+            <livewire:tweets.post-tweet  />
+{{--            @include('tweets._publish-panel')--}}
         </div>
     </x-slot>
 
