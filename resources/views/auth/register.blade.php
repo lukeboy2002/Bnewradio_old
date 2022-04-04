@@ -3,7 +3,8 @@
 
     <x-cards.auth>
         <x-slot:heading>Register your account </x-slot:heading>
-        <form action="{{ route('register') }}" method="POST">
+
+        <form action="{{ route('register') }}" method="POST" class="space-y-6">
         @csrf
             <x-form.input type="text" name="username" required />
 

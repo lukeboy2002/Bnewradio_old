@@ -2,8 +2,8 @@
     <x-cards.default>
 
         <x-slot:header>
-            <h2 id="applicant-information-title" class="text-lg leading-6 font-medium text-gray-900"><i class="fa-solid fa-list-check mr-2"></i>Edit Permission</h2>
-            <p class="mt-1 max-w-2xl text-sm text-gray-500">Change the permission</p>
+            <h3 class="text-lg leading-6 font-medium text-red-700"><i class="fa-solid fa-list-check mr-2"></i>Edit Permission</h3>
+            <p class="mt-1 text-sm text-gray-500">Change the permission</p>
         </x-slot:header>
 
         <form action="{{ route('admin.permissions.update', $permission->id) }}" method="POST" class="space-y-6">

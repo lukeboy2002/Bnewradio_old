@@ -3,7 +3,7 @@
         <form method="POST" action="/tweets" class="relative">
             @csrf
             <div class="border border-gray-300 rounded-lg overflow-hidden shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-700">
-                <x-form.textarea name="body" placeholder="Btweet here" required/>
+                <x-form.textarea name="Btweet" placeholder="Btweet here...." required/>
 
                 <div class="flex justify-between items-center py-2 p-4 border-t border-gray-200">
                     <div class="flex items-center">

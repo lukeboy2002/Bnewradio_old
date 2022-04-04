@@ -26,16 +26,16 @@
                 </div>
             </header>
 
-            <div class="text-sm mt-2 space-y-4">
+            <div class="text-sm mt-2 flex-1 space-y-4">
                 {!! $post->excerpt !!}
             </div>
 
             <footer class="flex justify-between items-center mt-8">
                 <div class="flex items-center text-sm">
-                    <img src="{{ asset('storage/' . $post->author->avatar) }}" class="h-10 w-10 rounded-full" alt="Lary avatar">
+                    <img src="{{ asset('storage/' . $post->user->avatar) }}" class="h-10 w-10 rounded-full" alt="avatar">
                     <div class="ml-3">
                         <h5 class="font-bold">
-                            <a href="?author={{ $post->author->username }}">{{ $post->author->username }}</a>
+                            <a href="?user={{ $post->user->username }}">{{ $post->user->username }}</a>
                         </h5>
                     </div>
                 </div>

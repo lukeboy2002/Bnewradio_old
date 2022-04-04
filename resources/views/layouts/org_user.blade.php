@@ -9,46 +9,6 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
-    <style>
-        .ck-content > blockquote,
-        .ck-content > dl,
-        .ck-content > dd,
-        .ck-content > h1,
-        .ck-content > h2,
-        .ck-content > h3,
-        .ck-content > h4,
-        .ck-content > h5,
-        .ck-content > h6,
-        .ck-content > hr,
-        .ck-content > figure,
-        .ck-content > p,
-        .ck-content > pre {
-            margin: revert;
-        }
-        .ck-content > ol,
-        .ck-content > ul {
-            list-style: revert;
-            margin: revert;
-            padding: revert;
-        }
-        .ck-content > table {
-            border-collapse: revert;
-        }
-        .ck-content > h1,
-        .ck-content > h2,
-        .ck-content > h3,
-        .ck-content > h4,
-        .ck-content > h5,
-        .ck-content > h6 {
-            font-size: revert;
-            font-weight: revert;
-        }
-        .ck-editor__editable_inline {
-            min-height: 200px;
-        }
-    </style>
-
     <livewire:styles />
 </head>
 
@@ -74,19 +34,36 @@
             @if (isset($aside) && $aside != null )
             <div class="md:grid md:grid-cols-12 md:gap-4">
                 <div class="md:col-span-9">
-                    {{ $slot }}
+                    <div class="bg-white shadow sm:rounded-lg">
+                        <div>
+                            @if (isset($main) && $main != null )
+                                {{ $main }}
+                            @endif
+                        </div>
+                        <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
+                            {{ $slot }}
+                        </div>
+                    </div>
                 </div>
 
                 <aside class="md:col-span-3">
                     {{ $aside }}
                 </aside>
             </div>
-
             @else
 
             <div class="md:grid md:grid-cols-12 md:gap-4">
                 <div class="md:col-span-12">
-                    {{ $slot }}
+                    <div class="bg-white shadow sm:rounded-lg">
+                        <div>
+                            @if (isset($main) && $main != null )
+                                {{ $main }}
+                            @endif
+                        </div>
+                        <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
+                            {{ $slot }}
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -95,14 +72,13 @@
         </div>
     </div>
 
+
 </div>
 <x-footer />
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
-{{--<script src="https://unpkg.com/turbolinks"></script>--}}
-<script src="https://cdn.ckeditor.com/ckeditor5/26.0.0/classic/ckeditor.js"></script>
 <livewire:scripts />
-@stack('scripts')
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="http://unpkg.com/turbolinks"></script>
 
 </body>
 </html>

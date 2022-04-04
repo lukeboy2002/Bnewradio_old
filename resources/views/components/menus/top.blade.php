@@ -26,7 +26,12 @@
                 @if (Route::has('login'))
                     @auth
                         <!-- Profile dropdown -->
+                            <div class="ml-3 text-red-700 text-sm font-bold">
+                                <span class="sr-only">Open user menu for </span>
+                                {{ current_user()->username }}
+                            </div>
                             <x-menus.profile-dropdown>
+
                                 <x-slot name="trigger">
                                     <button type="button" class="ml-3 bg-white rounded-full flex text-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-700" id="menu-button" aria-expanded="true" aria-haspopup="true">
                                         <img class="h-8 w-8 rounded-full" src="{{ current_user()->avatar }}" alt="Avatar">

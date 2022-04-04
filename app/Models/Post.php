@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     protected $fillable = [
         'user_id',
@@ -16,12 +17,13 @@ class Post extends Model
         'slug',
         'excerpt',
         'body',
+        'image',
         'published_at',
     ];
 
     protected $with = [
         'category',
-        'author',
+        'user',
     ];
 
     public function scopeFilter($query, array $filters)
@@ -40,9 +42,9 @@ class Post extends Model
         )
         );
 
-        $query->when($filters['author'] ?? false, fn($query, $author) =>
-        $query->whereHas('author', fn ($query) =>
-        $query->where('username', $author)
+        $query->when($filters['user'] ?? false, fn($query, $user) =>
+        $query->whereHas('user', fn ($query) =>
+        $query->where('username', $user)
         )
         );
     }
@@ -52,19 +54,22 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function author()
+    public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
-
 
     public function comments()
     {
         return $this->hasMany(Comment::class);
     }
 
-//    public function getRouteKeyName()
-//    {
-//        return 'slug';
-//    }
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
 }

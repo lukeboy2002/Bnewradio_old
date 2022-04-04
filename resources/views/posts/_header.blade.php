@@ -37,5 +37,11 @@
             </div>
         </div>
 
+        @auth
+            @if(auth()->user()->can('addPost'))
+                <x-links.default_btn href="{{ route('admin.posts.create') }}" class="bg-red-700"><i class="fa-solid fa-blog mr-2"></i>Add Post</x-links.default_btn>
+            @endif
+        @endauth
+
     </div>
 </header>

@@ -1,13 +1,9 @@
 <x-user-layout>
-
-    <x-slot name="main">
-        <div class="px-4 pt-5 sm:px-6">
-            <livewire:tweets.post-tweet  />
-{{--            @include('tweets._publish-panel')--}}
-        </div>
-    </x-slot>
-
     <article class="bg-white border border-gray-200 shadow rounded-lg">
+        <div class="px-4 pt-5 sm:px-6">
+            @include('tweets._publish-panel')
+        </div>
+
         @include('tweets._timeline')
     </article>
 

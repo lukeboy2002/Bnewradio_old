@@ -25,9 +25,7 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                         @foreach($users as $user)
-
                             <tr>
-
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                     <img class="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0" src="{{$user->avatar}}" alt="users {{$user->name}} avatar">
                                 </td>
@@ -50,30 +48,12 @@
                                 </td>
                             </tr>
                         @endforeach
-
-                        <!-- More people... -->
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-    {{--    <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">--}}
-    {{--        @foreach($users as $user)--}}
-    {{--            <div class="col-span-1 bg-white rounded-lg shadow divide-y divide-gray-200 hover:bg-gray-100">--}}
-    {{--                <a href="{{ route('profile', $user) }}" class="m-0 p-0">--}}
-    {{--                    <div class="w-full flex items-center justify-between p-6">--}}
-    {{--                        <div class="flex-1 truncate">--}}
-    {{--                            <div class="flex items-center space-x-3">--}}
-    {{--                                <h3 class="text-gray-900 text-sm font-medium truncate">{{$user->username}}</h3>--}}
-    {{--                            </div>--}}
-    {{--                        </div>--}}
-    {{--                        <img class="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0" src="{{$user->avatar}}" alt="users {{$user->name}} avatar">--}}
-    {{--                    </div>--}}
-    {{--                </a>--}}
-    {{--            </div>--}}
-    {{--        @endforeach--}}
-    {{--    </div>--}}
     <div class="divide-y divide-gray-200">
         <div class="mt-2 py-4 px-4 sm:px-6">
             {{ $users->links() }}

@@ -18,12 +18,12 @@ class TweetController extends Controller
     public function store(Tweet $tweet, Request $request)
     {
         request()->validate([
-            'body' => 'required|max:255'
+            'Btweet' => 'required|max:255'
         ]);
 
         $tweet->create([
             'user_id' => request()->user()->id,
-            'body' => request('body')
+            'tweet' => request('Btweet')
         ]);
 
         $request->session()->flash('success', 'Your tweet has been added');

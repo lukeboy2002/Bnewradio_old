@@ -10,29 +10,20 @@
     <x-links.main href="{{ route('admin.permissions.index') }}" :active="request()->routeIs('admin.permissions*')">
         <i class="fa-solid fa-clipboard-list mr-2"></i>Permissions
     </x-links.main>
+@endrole
 
-    <x-links.main href="#">
-        <i class="far fa-images mr-2"></i>Carousel
-    </x-links.main>
-
-    <x-links.main href="#">
-        <i class="far fa-calendar-alt mr-2"></i>Program
-    </x-links.main>
-
-    <x-links.main href="#">
-        <i class="fas fa-user-friends mr-2"></i>Team
-    </x-links.main>
-
-    <x-links.main href="#">
+@if(auth()->user()->can('addPost'))
+    <x-links.main href="{{ route('admin.posts.index') }}" :active="request()->routeIs('admin.posts*')">
         <i class="fas fa-blog mr-2"></i>Blog
     </x-links.main>
+
 
     <div class="relative pb-2">
         <div class="absolute inset-0 flex items-center" aria-hidden="true">
             <div class="w-full border-t border-gray-300"></div>
         </div>
     </div>
-@endrole
+@endif
 
     <x-links.main href="{{ route('home') }}" :active="request()->routeIs('home')">
         <i class="fas fa-home mr-2"></i>Home

@@ -1,9 +1,10 @@
 <x-user-layout>
     <x-cards.default>
         <x-slot:header>
-            <h2 id="applicant-information-title" class="text-lg leading-6 font-medium text-gray-900"><i class="fa-solid fa-folder-plus mr-2"></i>Add Role</h2>
-            <p class="mt-1 max-w-2xl text-sm text-gray-500">Create a new Role</p>
+            <h3 class="text-lg leading-6 font-medium text-red-700"><i class="fa-solid fa-folder-plus mr-2"></i>Add Role</h3>
+            <p class="mt-1 text-sm text-gray-500">Create a new Role</p>
         </x-slot:header>
+
         <form action="{{ route('admin.roles.store') }}" method="POST" class="space-y-6">
             @csrf
             <x-form.input type="text" name="name" required />

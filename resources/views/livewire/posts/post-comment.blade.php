@@ -7,7 +7,7 @@
                 <h2 class="ml-3">Want to participate</h2>
             </header>
             <div class="mt-4">
-                <x-form.textarea wire:model.defer="comment" name="comment" rows="3" placeholder="Write your comment" required />
+                <x-form.textarea wire:model.defer="comment" name="Comment" rows="3" placeholder="Write your comment" required />
             </div>
             <footer class="flex justify-end">
                 <x-buttons.default class="bg-red-700">
@@ -55,11 +55,11 @@
     @foreach($post->comments->reverse() as $comment)
         <x-cards.default>
             <article class="flex space-x-4">
-                <img class="h-10 w-10 rounded-full" src="{{ $comment->author->avatar }}" alt="Avatar">
+                <img class="h-10 w-10 rounded-full" src="{{ $comment->user->avatar }}" alt="Avatar">
 
                 <div>
                     <header class="mb-4">
-                        <h3 class="font-bold">{{ $comment->author->username }}</h3>
+                        <h3 class="font-bold">{{ $comment->user->username }}</h3>
 
                         <p class="text-xs text-gray-400">
                             Posted

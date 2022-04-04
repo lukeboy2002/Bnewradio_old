@@ -33,7 +33,7 @@
 <!-- Scripts -->
 <livewire:scripts />
 <script src="{{ asset('js/app.js') }}"></script>
-<script src="http://unpkg.com/turbolinks"></script>
+{{--<script src="http://unpkg.com/turbolinks"></script>--}}
 
 </body>
 </html>

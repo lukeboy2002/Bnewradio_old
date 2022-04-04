@@ -13,7 +13,7 @@
         </div>
     </a>
     <div class="mt-2 text-sm text-gray-700 space-y-4">
-        <p>{{ $tweet->body }}</p>
+        <p>{{ $tweet->tweet }}</p>
     </div>
     <div class="mt-6 flex justify-between space-x-8">
         <x-buttons.likeable-dislike :tweet="$tweet" />
