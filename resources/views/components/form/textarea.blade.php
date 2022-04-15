@@ -13,7 +13,6 @@
         {{ $attributes }}
     >{{ $slot ?? old($name) }}</textarea>
 
-    <x-form.error class="ml-4" name="{{ $name }}" />
-
-
 </x-form.field_textarea>
+
+<x-form.error name="{{ $name }}" />

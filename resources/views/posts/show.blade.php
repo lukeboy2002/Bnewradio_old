@@ -48,7 +48,7 @@
                 </h1>
 
                 <div class="space-y-4">
-                    {!! $post->body !!}
+                    {!! Markdown::convertToHtml($post->body) !!}
                 </div>
             </div>
 

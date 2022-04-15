@@ -10,44 +10,6 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-    <style>
-        .ck-content > blockquote,
-        .ck-content > dl,
-        .ck-content > dd,
-        .ck-content > h1,
-        .ck-content > h2,
-        .ck-content > h3,
-        .ck-content > h4,
-        .ck-content > h5,
-        .ck-content > h6,
-        .ck-content > hr,
-        .ck-content > figure,
-        .ck-content > p,
-        .ck-content > pre {
-            margin: revert;
-        }
-        .ck-content > ol,
-        .ck-content > ul {
-            list-style: revert;
-            margin: revert;
-            padding: revert;
-        }
-        .ck-content > table {
-            border-collapse: revert;
-        }
-        .ck-content > h1,
-        .ck-content > h2,
-        .ck-content > h3,
-        .ck-content > h4,
-        .ck-content > h5,
-        .ck-content > h6 {
-            font-size: revert;
-            font-weight: revert;
-        }
-        .ck-editor__editable_inline {
-            min-height: 200px;
-        }
-    </style>
 
     <livewire:styles />
 </head>
@@ -100,7 +62,6 @@
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
 {{--<script src="https://unpkg.com/turbolinks"></script>--}}
-<script src="https://cdn.ckeditor.com/ckeditor5/26.0.0/classic/ckeditor.js"></script>
 <livewire:scripts />
 @stack('scripts')
 

@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Roles;
+namespace App\Http\Livewire\Admin\Categories;
 
-use App\Models\Role;
+use App\Models\Category;
 use Livewire\Component;
 
-class AllRoles extends Component
+class AllCategories extends Component
 {
     public $showModal = false;
 
     public function render()
     {
-//        $roles = Role::all();
-        $roles = Role::with('permissions')->get();
+        $categories = Category::with('posts')->get();
+//        $categories = Category::all();
 
-        return view('livewire.admin.roles.all-roles', [
-            'roles' => $roles
+        return view('livewire.admin.categories.all-categories', [
+            'categories' => $categories
         ]);
     }
 
@@ -27,7 +27,7 @@ class AllRoles extends Component
 
     public function delete()
     {
-        Role::find($this->deleteId)->delete();
+        Category::find($this->deleteId)->delete();
         $this->showModal = false;
     }
 

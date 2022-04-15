@@ -12,8 +12,8 @@
            id="{{ $name }}"
            aria-label="{{ $name }}"
            {{ $attributes(['value' => old($name)]) }}
-           placeholder=" "
     />
 
-    <x-form.error name="{{ $name }}"/>
 </x-form.field>
+<x-form.error name="{{ $name }}" />
+

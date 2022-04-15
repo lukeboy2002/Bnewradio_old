@@ -4,12 +4,12 @@
     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
         <div class="bg-gray-50 border border-gray-200 flex justify-between items-center py-3 px-6 mb-6 sm:rounded-lg">
             <div class="flex items-center text-red-700">
-                <i class="fa-solid fa-clipboard-list mr-2"></i>
-                <h3 class="text-md font-bold">Category Management</h3>
+                <i class="fa-solid fa-folder-tree mr-2"></i>
+                <h3 class="text-md font-bold">Categories Management</h3>
             </div>
 
             <div>
-                <x-links.default_btn href="{{ route('admin.permissions.create') }}" class="bg-red-700"><i class="fa-solid fa-clipboard-list mr-2"></i>Add Permission</x-links.default_btn>
+                <x-links.default_btn href="{{ route('admin.categories.create') }}" class="bg-red-700"><i class="fa-solid fa-folder mr-2"></i>Add Category</x-links.default_btn>
             </div>
         </div>
 
@@ -18,33 +18,33 @@
                 <thead class="bg-gray-50">
                 <tr>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Roles</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Posts</th>
                     <th scope="col" class="relative px-6 py-3">
                         <span class="sr-only">Edit</span>
                     </th>
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                @forelse($permissions as $permission)
+                @forelse($categories as $category)
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap text-gray-500">
-                            <div class="text-sm font-medium text-gray-500">{{ $permission->name }}</div>
+                            <div class="text-sm font-medium text-gray-500">{{ $category->name }}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            @foreach( $permission->roles as $role )
+                            @foreach( $category->posts as $post )
                                 <span class="flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full">
-                                    {{ $role->name }}
+                                    {{ $post->title }}
                                 </span>
                             @endforeach
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
-                            <x-links.default_btn href="{{ route('admin.permissions.edit' , $permission->id) }}" class="bg-gray-600">Edit</x-links.default_btn>
-                            <x-buttons.default wire:click="deleteId({{ $permission->id }})" class="bg-red-700">Delete</x-buttons.default>
+                            <x-links.default_btn href="{{ route('admin.categories.edit' , $category->id) }}" class="bg-gray-600">Edit</x-links.default_btn>
+                            <x-buttons.default wire:click="deleteId({{ $category->id }})" class="bg-red-700">Delete</x-buttons.default>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5">There are no Permissions yet</td>
+                        <td colspan="5">There are no Categories yet</td>
                     </tr>
                 @endforelse
                 </tbody>
@@ -77,6 +77,3 @@
         </x-modal>
     </div>
 </div>
-
-
-

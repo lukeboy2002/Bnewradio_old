@@ -13,6 +13,10 @@
 @endrole
 
 @if(auth()->user()->can('addPost'))
+    <x-links.main href="{{ route('admin.categories.index') }}" :active="request()->routeIs('admin.categories*')">
+        <i class="fa-solid fa-folder-tree mr-2"></i>Category
+    </x-links.main>
+
     <x-links.main href="{{ route('admin.posts.index') }}" :active="request()->routeIs('admin.posts*')">
         <i class="fas fa-blog mr-2"></i>Blog
     </x-links.main>

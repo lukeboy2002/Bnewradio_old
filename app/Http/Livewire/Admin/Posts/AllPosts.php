@@ -14,7 +14,8 @@ class AllPosts extends Component
 
     public function render()
     {
-        $posts = Post::paginate(5);
+//        $posts = Post::paginate(5);
+        $posts = Post::with('user')->paginate(5);
 
         return view('livewire.admin.posts.all-posts', [
             'posts' => $posts

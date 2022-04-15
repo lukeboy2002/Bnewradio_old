@@ -11,7 +11,8 @@ class AllPermissions extends Component
 
     public function render()
     {
-        $permissions = Permission::all();
+//        $permissions = Permission::all();
+        $permissions = Permission::with('roles')->get();
 
         return view('livewire.admin.permissions.all-permissions', [
             'permissions' => $permissions

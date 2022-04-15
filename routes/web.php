@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\BlogController;
+use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\PermissionController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\UserController;
@@ -69,13 +70,13 @@ Route::middleware(['auth', 'verified', 'can:edit,user'])->group(function () {
     Route::patch('profiles/{user:username}', [ProfileController::class, 'update']);
 });
 
-
 //ADMIN ROUTES
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function (){
     Route::resource('/users', UserController::class);
     Route::resource('/roles', RoleController::class);
     Route::resource('/permissions',PermissionController::class);
     Route::resource('/posts', BlogController::class );
+    Route::resource('/categories', CategoryController::class );
 });
 
 

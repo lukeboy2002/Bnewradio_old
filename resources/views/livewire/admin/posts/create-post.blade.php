@@ -2,60 +2,38 @@
     <form wire:submit.prevent="createPost" enctype="multipart/form-data">
         @csrf
         <div class="mt-6 space-y-5 gap-y-6 gap-x-4 sm:grid-cols-6">
-            <div class="w-full">
-                <x-form.input wire:model="title" type="text" name="Title" id="name" placeholder="Title.." required />
-            </div>
 
-            <div class="w-full">
-                <x-form.input wire:model="slug" type="text" name="Slug"/>
-            </div>
-
-            <div class="w-full">
-                <x-form.textarea wire:model="excerpt" name="Excerpt" placeholder="Write a description..." />
-            </div>
-
-            <div class="w-full">
-                <x-form.textarea wire:model.defer="body" name="Body" rows="5" placeholder="Write a description..." />
-            </div>
-
-{{--            <div class="w-full">--}}
-{{--                <label class="block font-medium text-sm text-gray-700" for="description">--}}
-{{--                    Body--}}
-{{--                </label>--}}
-{{--                <div wire:ignore>--}}
-{{--                    <textarea name="Body" id="body"></textarea>--}}
-{{--                </div>--}}
-{{--                @error('post.body')--}}
-{{--                <div class="text-sm text-red-500 ml-1">--}}
-{{--                    {{ $message }}--}}
-{{--                </div>--}}
-{{--                @enderror--}}
-{{--            </div>--}}
-
-{{--            <div class="sm:col-span-6">--}}
-{{--                <label for="cover-photo" class="block text-sm font-medium text-gray-700"> Cover photo </label>--}}
-{{--                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">--}}
-{{--                    <div class="space-y-1 text-center">--}}
-{{--                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">--}}
-{{--                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />--}}
-{{--                        </svg>--}}
-{{--                        <div class="flex text-sm text-gray-600">--}}
-{{--                            <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">--}}
-{{--                                <span>Upload a file</span>--}}
-{{--                                <input id="file-upload" name="file-upload" type="file" class="sr-only">--}}
-{{--                            </label>--}}
-{{--                            <p class="pl-1">or drag and drop</p>--}}
-{{--                        </div>--}}
-{{--                        <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-            <input type="file" wire:model="image">
-            @error('image')
-                <span class="error">
+            <select wire:model="category" name="category" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                <option>Select a Category</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+            @error('category')
+                <span class="p-2 text-red-500 text-xs">
                     {{ $message }}
                 </span>
             @enderror
+
+            <div class="w-full">
+                <x-form.input wire:model="title" type="text" name="title" placeholder="Title.."  />
+            </div>
+
+            <div class="w-full">
+                <x-form.input wire:model="slug" type="text" name="slug"/>
+            </div>
+
+            <div class="w-full">
+                <x-form.textarea wire:model="excerpt" name="excerpt" placeholder="Write a description..." />
+            </div>
+
+            <div class="w-full">
+                <x-form.textarea wire:model.defer="body" name="body" rows="5" placeholder="Write a description..." />
+            </div>
+
+            <div class="w-full">
+                <x-form.input wire:model="image" type="file" name="image"/>
+            </div>
 
         </div>
         <div class="pt-5 flex justify-end space-x-2">
@@ -97,21 +75,3 @@
     @endif
 
 </div>
-
-{{--@push('scripts')--}}
-{{--    <script>--}}
-{{--        ClassicEditor--}}
-{{--            .create(document.querySelector('#body'))--}}
-{{--            .then(editor => {--}}
-{{--                editor.model.document.on('change:data', () => {--}}
-{{--                @this.set('body', editor.getData());--}}
-{{--                })--}}
-{{--                Livewire.on('reinit', () => {--}}
-{{--                    editor.setData('', '')--}}
-{{--                })--}}
-{{--            })--}}
-{{--            .catch(error => {--}}
-{{--                console.error(error);--}}
-{{--            });--}}
-{{--    </script>--}}
-{{--@endpush--}}

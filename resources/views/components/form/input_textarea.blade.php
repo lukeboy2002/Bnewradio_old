@@ -5,4 +5,5 @@
     id="{{ $name }}"
     aria-label="{{ $name }}"
     placeholder="{{ $name }}"
+    readonly
 />
