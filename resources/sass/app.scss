@@ -7,8 +7,4 @@
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/brands';
 
-p {
-    img {
-        height: 10rem;
-    }
-}
+@import "markdown";

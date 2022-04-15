@@ -47,7 +47,7 @@
                     {{ $post->title }}
                 </h1>
 
-                <div class="space-y-4">
+                <div class="space-y-4 markdown-body">
                     {!! Markdown::convertToHtml($post->body) !!}
                 </div>
             </div>

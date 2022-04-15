@@ -10,6 +10,12 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
+    <style>
+        .markdown-body {
+            box-sizing: border-box;
+            margin: 0 auto;
+        }
+    </style>
 
     <livewire:styles />
 </head>
