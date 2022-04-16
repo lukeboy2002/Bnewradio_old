@@ -1,24 +1,22 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Posts;
+namespace App\Http\Livewire\Admin;
 
-use App\Models\Post;
+use App\Models\Permission;
 use Livewire\Component;
-use Livewire\WithPagination;
+use function view;
 
-class AllPosts extends Component
+class Permissions extends Component
 {
-    use WithPagination;
-
     public $showModal = false;
 
     public function render()
     {
-//        $posts = Post::paginate(5);
-        $posts = Post::with('user')->paginate(5);
+//        $permissions = Permission::all();
+        $permissions = Permission::with('roles')->get();
 
-        return view('livewire.admin.posts.all-posts', [
-            'posts' => $posts
+        return view('livewire.admin.permissions', [
+            'permissions' => $permissions
         ]);
     }
 
@@ -30,7 +28,7 @@ class AllPosts extends Component
 
     public function delete()
     {
-        Post::find($this->deleteId)->delete();
+        Permission::find($this->deleteId)->delete();
         $this->showModal = false;
     }
 
@@ -38,4 +36,5 @@ class AllPosts extends Component
     {
         $this->showModal = false;
     }
+
 }

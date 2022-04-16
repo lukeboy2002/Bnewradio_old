@@ -1,14 +1,17 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Posts;
+namespace App\Http\Livewire\Admin;
 
 use App\Models\Category;
 use App\Models\Post;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use function redirect;
+use function request;
+use function view;
 
-class CreatePost extends Component
+class PostCreate extends Component
 {
     use WithFileUploads;
 
@@ -39,7 +42,7 @@ class CreatePost extends Component
         $this->slug = SlugService::createSlug(Post::class, 'slug', $this->title);
     }
 
-    public function createPost()
+    public function PostCreate()
     {
         $this->validate();
 
@@ -69,7 +72,7 @@ class CreatePost extends Component
 
     public function render()
     {
-        return view('livewire.admin.posts.create-post', [
+        return view('livewire.admin.post-create', [
             'categories' => Category::all(),
         ]);
     }

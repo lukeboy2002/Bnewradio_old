@@ -1,21 +1,25 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Categories;
+namespace App\Http\Livewire\Admin;
 
-use App\Models\Category;
+use App\Models\Post;
 use Livewire\Component;
+use Livewire\WithPagination;
+use function view;
 
-class AllCategories extends Component
+class Posts extends Component
 {
+    use WithPagination;
+
     public $showModal = false;
 
     public function render()
     {
-        $categories = Category::with('posts')->get();
-//        $categories = Category::all();
+//        $posts = Post::paginate(5);
+        $posts = Post::with('user')->paginate(5);
 
-        return view('livewire.admin.categories.all-categories', [
-            'categories' => $categories
+        return view('livewire.admin.posts', [
+            'posts' => $posts
         ]);
     }
 
@@ -27,7 +31,7 @@ class AllCategories extends Component
 
     public function delete()
     {
-        Category::find($this->deleteId)->delete();
+        Post::find($this->deleteId)->delete();
         $this->showModal = false;
     }
 

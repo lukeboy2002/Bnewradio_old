@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Users;
+namespace App\Http\Livewire\Admin;
 
-use App\Models\Role;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
+use function view;
 
-class AllUsers extends Component
+class Users extends Component
 {
     use WithPagination;
 
@@ -26,7 +26,7 @@ class AllUsers extends Component
         })
             ->paginate(10);
 
-        return view('livewire.admin.users.all-users', [
+        return view('livewire.admin.users', [
             'users' => $users
         ]);
     }

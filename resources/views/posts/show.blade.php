@@ -52,7 +52,7 @@
                 </div>
             </div>
 
-            <livewire:posts.post-comment :post="$post" />
+            <livewire:post-comment :post="$post" />
         </article>
     </main>
 </x-app-layout>

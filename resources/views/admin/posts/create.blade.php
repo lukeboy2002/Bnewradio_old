@@ -5,7 +5,7 @@
             <p class="mt-1 text-sm text-gray-500">Create a new BlogPost</p>
         </x-slot:header>
 
-        <livewire:admin.posts.create-post />
+        <livewire:admin.post-create />
 
     </x-cards.default>
 </x-user-layout>

@@ -1,21 +1,22 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Permissions;
+namespace App\Http\Livewire\Admin;
 
-use App\Models\Permission;
+use App\Models\Role;
 use Livewire\Component;
+use function view;
 
-class AllPermissions extends Component
+class Roles extends Component
 {
     public $showModal = false;
 
     public function render()
     {
-//        $permissions = Permission::all();
-        $permissions = Permission::with('roles')->get();
+//        $roles = Role::all();
+        $roles = Role::with('permissions')->get();
 
-        return view('livewire.admin.permissions.all-permissions', [
-            'permissions' => $permissions
+        return view('livewire.admin.roles', [
+            'roles' => $roles
         ]);
     }
 
@@ -27,7 +28,7 @@ class AllPermissions extends Component
 
     public function delete()
     {
-        Permission::find($this->deleteId)->delete();
+        Role::find($this->deleteId)->delete();
         $this->showModal = false;
     }
 
@@ -35,5 +36,4 @@ class AllPermissions extends Component
     {
         $this->showModal = false;
     }
-
 }

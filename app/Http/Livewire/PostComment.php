@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Posts;
+namespace App\Http\Livewire;
 
 use App\Models\Comment;
 use App\Models\Post;
 use Livewire\Component;
 use Livewire\WithPagination;
+use function request;
+use function view;
 
 class PostComment extends Component
 {
@@ -19,7 +21,7 @@ class PostComment extends Component
         'comment' => 'required|min:4'
     ];
 
-    public function postComment()
+    public function PostComment()
     {
         $this->validate();
 
@@ -40,7 +42,7 @@ class PostComment extends Component
 
     public function render()
     {
-        return view('livewire.posts.post-comment');
+        return view('livewire.post-comment');
 
     }
 }

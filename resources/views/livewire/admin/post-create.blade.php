@@ -1,5 +1,5 @@
 <div>
-    <form wire:submit.prevent="createPost" enctype="multipart/form-data">
+    <form wire:submit.prevent="PostCreate" enctype="multipart/form-data">
         @csrf
         <div class="mt-6 space-y-5 gap-y-6 gap-x-4 sm:grid-cols-6">
 
