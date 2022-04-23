@@ -4,7 +4,6 @@
 @endphp
 
 <x-form.field>
-
     <x-form.label name="{{ $name }}" />
 
     <input {{ $attributes->merge(['class' => $classes]) }}
@@ -13,7 +12,9 @@
            aria-label="{{ $name }}"
            {{ $attributes(['value' => old($name)]) }}
     />
-
+    <x-form.error name="{{ $name }}" />
 </x-form.field>
-<x-form.error name="{{ $name }}" />
+
+
+
 

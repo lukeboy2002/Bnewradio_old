@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <div>
-            <img class="h-32 w-full object-cover lg:h-48 sm:rounded-lg" src="{{ $user->profile_img}}" alt="my profile image">
+            <img class="h-40 w-full object-cover lg:h-60 sm:rounded-lg" src="{{ $user->profile_img}}" alt="my profile image">
         </div>
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5 pb-4">

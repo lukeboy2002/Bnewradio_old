@@ -42,9 +42,20 @@ Route::post('newsletter', NewsletterController::class)->name('newsletter');
 Route::get('posts', [PostController::class, 'index'])->name('posts');
 Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
 
+Route::post('profiles/{id}/restore', [ProfileController::class, 'trashedRestore'])->name('users.trashed.restore');
+
+
 Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/user', function () {
+        return view('user');
+    })->name('user');
+
     //SHOW PROFILE (Currentuser)
     Route::get('profiles/{user:username}', [ProfileController::class, 'show'])->name('profiles');
+
+    //DELETE PROFILE (Currentuser)
+    Route::delete('profiles/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
     //EXPLORE USERS
     Route::get('explore', [ExploreController::class, 'index'])->name('explore');
     Route::get('explore/{user:username}', [ExploreController::class, 'show'])->name('explore.show');
@@ -72,11 +83,15 @@ Route::middleware(['auth', 'verified', 'can:edit,user'])->group(function () {
 
 //ADMIN ROUTES
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function (){
+    Route::get('/users/trashed', [PostController::class, 'trashed'])->name('posts.trashed');
+    Route::post('/users/trashed/{id}/restore', [PostController::class, 'trashedRestore'])->name('posts.trashed.restore');
+    Route::post('/users/trashed/{id}/forse_delete', [PostController::class, 'trashedDelete'])->name('posts.trashed.destroy');
+    Route::get('status', [UserController::class, 'userOnlineStatus']);
     Route::resource('/users', UserController::class);
+
     Route::resource('/roles', RoleController::class);
     Route::resource('/permissions',PermissionController::class);
     Route::resource('/posts', BlogController::class );
     Route::resource('/categories', CategoryController::class );
 });
-
 

@@ -24,6 +24,8 @@ class Users extends Component
         $users = User::when($this->search != '', function($query) {
             $query->where('username', 'like', '%'.$this->search.'%');
         })
+            ->withTrashed()
+            ->latest()
             ->paginate(10);
 
         return view('livewire.admin.users', [

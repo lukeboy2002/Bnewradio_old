@@ -93,6 +93,18 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect('/')
+            ->with('success', 'Your account has been deleted. A Email has been send');
+
+    }
+
+    public function trashedRestore($id)
+    {
+        $user  = User::onlyTrashed()->findOrFail($id);
+        $user->restore();
+        return back();
     }
 }

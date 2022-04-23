@@ -23,10 +23,12 @@ return new class extends Migration
             $table->string('jobtitle')->nullable();
             $table->text('bio')->nullable();
             $table->string('avatar')->default('/images/avatars/user.png');
-            $table->string('profile_img')->default('/images/profiles/default-profiles-banner.jpg');
+            $table->string('profile_img')->default('/images/profiles/default.jpeg');
             $table->string('provider_id')->nullable();
             $table->string('provider')->nullable();
             $table->string('password')->nullable();
+            $table->timestamp('last_seen')->nullable();
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

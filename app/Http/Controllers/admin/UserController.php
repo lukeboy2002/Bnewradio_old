@@ -6,7 +6,9 @@ use App\Actions\Fortify\PasswordValidationRules;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
@@ -36,7 +38,6 @@ class UserController extends Controller
      */
     public function create()
     {
-//        $this->authorize('CreateUser', User::class);
 
         $roles = Role::get();
 
@@ -158,5 +159,37 @@ class UserController extends Controller
         $request->session()->flash('success', 'User has been deleted');
 
         return redirect()->route('admin.users.index');
+    }
+
+    public function trashed()
+    {
+        $posts = User::onlyTrashed()->get();
+
+        return view('trashed', compact('posts'));
+    }
+
+    public function trashedRestore($id)
+    {
+        $user  = User::onlyTrashed()->findOrFail($id);
+        $user->restore();
+        return back();
+    }
+
+    public function trashedDelete($id)
+    {
+        $post  = User::onlyTrashed()->findOrFail($id);
+        $post->forceDelete();
+        return back();
+    }
+
+    public function userOnlineStatus()
+    {
+        $users = User::all();
+        foreach ($users as $user) {
+            if (Cache::has('user-is-online-' . $user->id))
+                echo $user->name . " is online. Last seen: " . Carbon::parse($user->last_seen)->diffForHumans() . " <br>";
+            else
+                echo $user->name . " is offline. Last seen: " . Carbon::parse($user->last_seen)->diffForHumans() . " <br>";
+        }
     }
 }

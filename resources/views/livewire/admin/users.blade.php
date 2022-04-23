@@ -27,8 +27,9 @@
                 <tr>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+{{--                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last seen</th>--}}
                     <th scope="col" class="relative px-6 py-3">
                         <span class="sr-only">Edit</span>
                     </th>
@@ -52,9 +53,6 @@
                             <div class="text-sm text-gray-500">Regional Paradigm Technician</div>
                             <div class="text-sm text-gray-500">Optimization</div>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"> Active </span>
-                        </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             @foreach ($user->roles as $role)
                                 @if($role->id == 1)
@@ -68,9 +66,24 @@
                                 @endif
                             @endforeach
                         </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            @if(Cache::has('user-is-online-' . $user->id))
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Online</span>
+                            @else
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Offline</span>
+                            @endif
+                        </td>
+{{--                        <td class="px-6 py-4 whitespace-nowrap text-sm">--}}
+{{--                            {{ \Carbon\Carbon::parse($user->last_seen)->diffForHumans() }}--}}
+{{--                        </td>--}}
+
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
-                        <x-links.default_btn href="{{ route('admin.users.edit' , $user->id) }}" class="bg-gray-600">Edit</x-links.default_btn>
-                        <x-buttons.default wire:click="deleteId({{ $user->id }})" class="bg-red-700">Delete</x-buttons.default>
+                            @if ($user->trashed())
+                                <x-links.default_btn href="{{ route('admin.users.edit' , $user->id) }}" class="bg-red-700">Restore</x-links.default_btn>
+                            @else
+                                <x-links.default_btn href="{{ route('admin.users.edit' , $user->id) }}" class="bg-gray-600">Edit</x-links.default_btn>
+                                <x-buttons.default wire:click="deleteId({{ $user->id }})" class="bg-red-700">Delete</x-buttons.default>
+                            @endif
                         </td>
                     </tr>
                 @empty

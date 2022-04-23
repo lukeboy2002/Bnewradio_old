@@ -1,7 +1,7 @@
 @props(['name'])
 
 @php
-    $classes = 'p-2 text-red-500 text-xs';
+    $classes = 'pt-2 text-red-500 text-xs';
 @endphp
 
 @error($name)
