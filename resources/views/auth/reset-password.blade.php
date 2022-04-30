@@ -3,7 +3,7 @@
 
     <x-cards.auth>
         <x-slot:heading>Reset your password </x-slot:heading>
-        <form action="{{ route('password.update') }}" method="POST">
+        <form action="{{ route('password.update') }}" method="POST" class="space-y-6">
             @csrf
             <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
