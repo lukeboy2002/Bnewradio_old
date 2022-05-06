@@ -5,7 +5,7 @@
     <div class="space-y-6">
         <div class="bg-white shadow sm:rounded-lg p-4">
             @if (isset($header) && $header != null )
-                <div class="border-b border-gray-300 pb-4 ">
+                <div class="pb-4 ">
                     {{ $header }}
                 </div>
             @endif

@@ -79,7 +79,7 @@
 
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
                             @if ($user->trashed())
-                                <x-links.default_btn href="{{ route('admin.users.edit' , $user->id) }}" class="bg-red-700">Restore</x-links.default_btn>
+                                <x-links.default_btn href="{{ route('admin.users.trashed.restore' , $user->id) }}" class="bg-red-700">Restore</x-links.default_btn>
                             @else
                                 <x-links.default_btn href="{{ route('admin.users.edit' , $user->id) }}" class="bg-gray-600">Edit</x-links.default_btn>
                                 <x-buttons.default wire:click="deleteId({{ $user->id }})" class="bg-red-700">Delete</x-buttons.default>

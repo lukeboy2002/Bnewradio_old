@@ -38,7 +38,6 @@ class UserController extends Controller
      */
     public function create()
     {
-
         $roles = Role::get();
 
         return view('admin.users.create')
@@ -163,9 +162,12 @@ class UserController extends Controller
 
     public function trashed()
     {
-        $posts = User::onlyTrashed()->get();
+        $user = User::onlyTrashed()->get();
 
-        return view('trashed', compact('posts'));
+        return view('admin.users.index')
+            ->with([
+                'users' => $users
+            ]);
     }
 
     public function trashedRestore($id)

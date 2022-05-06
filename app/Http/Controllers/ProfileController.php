@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -94,17 +95,11 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
+        Auth::logout($id);
         $user->delete();
 
         return redirect('/')
-            ->with('success', 'Your account has been deleted. A Email has been send');
+            ->with('success', 'Your account has been deleted.');
 
-    }
-
-    public function trashedRestore($id)
-    {
-        $user  = User::onlyTrashed()->findOrFail($id);
-        $user->restore();
-        return back();
     }
 }

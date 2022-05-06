@@ -30,10 +30,13 @@ class Roles extends Component
     {
         Role::find($this->deleteId)->delete();
         $this->showModal = false;
+
+        return redirect()->to('/');
     }
 
     public function close()
     {
         $this->showModal = false;
+
     }
 }
