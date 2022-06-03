@@ -34,7 +34,7 @@
 
                                 <x-slot name="trigger">
                                     <button type="button" class="ml-3 bg-white rounded-full flex text-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-700" id="menu-button" aria-expanded="true" aria-haspopup="true">
-                                        <img class="h-8 w-8 rounded-full" src="{{ current_user()->avatar }}" alt="Avatar">
+                                        <img class="h-8 w-8 rounded-full" src="{{asset('storage/'.current_user()->avatar)}}" alt="Avatar">
                                     </button>
                                 </x-slot>
                                 <x-links.dropdown href="{{ route('profiles', current_user()->username) }}" :active="request()->routeIs('profile')">Your Profile</x-links.dropdown>

@@ -29,7 +29,7 @@
                 </p>
 
                 <div class="flex items-center lg:justify-center text-sm mt-4">
-                    <img class="h-14 w-14 rounded-full" src="{{ $post->user->avatar }}" alt="Avatar">
+                    <img class="h-14 w-14 rounded-full" src="{{asset('storage/'.$post->user->avatar->avatar)}}" alt="Avatar">
                     <div class="ml-3 text-left">
                         <a href="{{ route('explore.show', $post->user->username) }}" class="font-bold">{{ $post->user->username }}</a>
                         <p class="text-xs text-gray-400">

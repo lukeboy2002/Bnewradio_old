@@ -10,6 +10,10 @@
     <x-links.main href="{{ route('admin.permissions.index') }}" :active="request()->routeIs('admin.permissions*')">
         <i class="fa-solid fa-clipboard-list mr-2"></i>Permissions
     </x-links.main>
+
+    <x-links.main href="{{ route('admin.slides.index') }}" :active="request()->routeIs('admin.slides*')">
+        <i class="fa-brands fa-slideshare mr-2"></i>Slides
+    </x-links.main>
 @endrole
 
 @if(auth()->user()->can('addPost'))

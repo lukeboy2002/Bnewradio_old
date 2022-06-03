@@ -61,8 +61,8 @@
                     </h2>
                     <form method="POST" action="/newsletter" class="sm:flex sm:items-center">
                         @csrf
-                        <div class="w-full sm:max-w-xs">
-                            <x-form.input type="email" name="email" id="email" class="text-gray-400" required />
+                        <div class="w-full sm:max-w-xs bg-white rounded-md">
+                            <x-form.input type="email" name="email" id="email" required />
                         </div>
                         <button type="submit" class="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-700 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                             Save

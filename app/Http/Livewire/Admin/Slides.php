@@ -1,20 +1,23 @@
 <?php
 
-namespace App\Http\Livewire\Profiles;
+namespace App\Http\Livewire\Admin;
 
-use App\Models\User;
 use Livewire\Component;
+use Livewire\WithPagination;
+use App\Models\Slide;
 
-class DeleteUser extends Component
+class Slides extends Component
 {
+    use WithPagination;
+
     public $showModal = false;
 
     public function render()
     {
-        $user = current_user();
+        $slides = Slide::paginate(10);
 
-        return view('profiles.delete-user', [
-            'user' => $user
+        return view('livewire.admin.slides', [
+            'slides' => $slides
         ]);
     }
 
@@ -26,9 +29,7 @@ class DeleteUser extends Component
 
     public function delete()
     {
-        User::find($this->deleteId)->delete();
-
-        return redirect()->to('/')->with('success', 'Your account has been deleted');
+        Slide::find($this->deleteId)->delete();
         $this->showModal = false;
     }
 

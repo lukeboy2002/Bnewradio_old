@@ -4,7 +4,9 @@ use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\PermissionController;
 use App\Http\Controllers\admin\RoleController;
+use App\Http\Controllers\admin\SlideController;
 use App\Http\Controllers\admin\UserController;
+
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\FollowController;
@@ -29,6 +31,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
 
 //SOCIALITE
 Route::get('login/{provider}', [LoginController::class, 'redirectToProvider']);
@@ -72,7 +75,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 //CAN EDIT USER
 Route::middleware(['auth', 'verified', 'can:edit,user'])->group(function () {
 //PROFILE
-    Route::get('profiles/{user:username}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('profiles/{user:username}', [ProfileController::class, 'update']);
 });
 
@@ -88,5 +90,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
     Route::resource('/permissions',PermissionController::class);
     Route::resource('/posts', BlogController::class );
     Route::resource('/categories', CategoryController::class );
+    Route::resource('/slides', SlideController::class );
 });
 

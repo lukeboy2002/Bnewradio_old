@@ -9,7 +9,6 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
     <livewire:styles />
 </head>
 
@@ -20,13 +19,11 @@
     <x-menus.top />
     <x-messages />
 
-    <div class="py-5">
-        <main>
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                {{ $slot }}
-            </div>
-        </main>
-    </div>
+    <main>
+        <div class="w-full mx-auto">
+            {{ $slot }}
+        </div>
+    </main>
 </div>
 
 <x-footer />
@@ -34,7 +31,6 @@
 <!-- Scripts -->
 <livewire:scripts />
 <script src="{{ asset('js/app.js') }}"></script>
-{{--<script src="http://unpkg.com/turbolinks"></script>--}}
 
 </body>
 </html>

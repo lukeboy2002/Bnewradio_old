@@ -1,7 +1,7 @@
 <div class="p-4 {{ $loop->last ? '': 'border-b border-gray-50' }}">
     <a href="{{ route('explore.show', $tweet->user) }}">
         <div class="flex space-x-3">
-            <img class="h-10 w-10 rounded-full" src="{{ $tweet->user->avatar }}" alt="">
+            <img class="h-10 w-10 rounded-full" src="{{asset('storage/'.$tweet->user->avatar)}}" alt="">
             <div class="min-w-0 flex-1">
                 <p class="text-sm font-medium text-gray-900">
                     {{ $tweet->user->username }}
