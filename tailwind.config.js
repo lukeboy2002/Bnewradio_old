@@ -8,7 +8,14 @@ module.exports = {
   ],
     darkMode: 'media', // or 'media' or 'class'
     theme: {
-    extend: {},
+    extend: {
+        height: {
+            '128': '32rem',
+        },
+        spacing: {
+            '128': '32rem',
+        }
+    },
   },
   plugins: [
       require('tw-elements/dist/plugin'),

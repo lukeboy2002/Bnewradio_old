@@ -11,14 +11,6 @@
             </a>
             <x-badges.category :category="$post->category" />
         </div>
-        <div class="flex items-center justify-end">
-            @can ('edit', $post->user)
-                <x-links.default_btn_large href="{{ route('profile.edit', $post->user->username) }}" class="bg-green-400 text-center">
-                    <i class="fas fa-user-edit mr-2"></i>Edit
-                </x-links.default_btn_large>
-            @endcan
-        </div>
-
         <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
 
             <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
@@ -29,7 +21,7 @@
                 </p>
 
                 <div class="flex items-center lg:justify-center text-sm mt-4">
-                    <img class="h-14 w-14 rounded-full" src="{{asset('storage/'.$post->user->avatar->avatar)}}" alt="Avatar">
+                    <img class="h-14 w-14 rounded-full" src="{{asset('storage/'.$post->user->avatar)}}" alt="Avatar">
                     <div class="ml-3 text-left">
                         <a href="{{ route('explore.show', $post->user->username) }}" class="font-bold">{{ $post->user->username }}</a>
                         <p class="text-xs text-gray-400">
@@ -43,12 +35,29 @@
             </div>
 
             <div class="col-span-8">
-                <h1 class="font-bold text-3xl lg:text-4xl mb-10 text-red-700">
-                    {{ $post->title }}
-                </h1>
+                <div class=" mb-10 flex items-center justify-between">
+                    <h1 class="font-bold text-3xl lg:text-4xl text-red-700">
+                        {{ $post->title }}
+                    </h1>
+                    <div class="flex justify-end space-x-2">
+                    @can ('edit', $post->user)
+                        <x-links.default_btn_large href="{{ route('admin.posts.edit', $post->id) }}" class="bg-green-400 text-center">
+                            <i class="fas fa-blog mr-2"></i>Edit
+                        </x-links.default_btn_large>
+
+                        <form action="{{ route('admin.posts.destroy', $post->id) }}" method="Post">
+                            @csrf
+                            @method('DELETE')
+                            <x-buttons.large type="submit" class="bg-red-700 text-center">Delete</x-buttons.large>
+                        </form>
+
+
+                    @endcan
+                    </div>
+                </div>
 
                 <div class="space-y-4 markdown-body">
-                    {!! Markdown::convertToHtml($post->body) !!}
+                    {!! $post->body !!}
                 </div>
             </div>
 

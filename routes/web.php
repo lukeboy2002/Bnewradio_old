@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\ImageController;
 use App\Http\Controllers\admin\PermissionController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\SlideController;
@@ -27,11 +28,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
-
+Route::get('/theme', function () {
+    return view('theme');
+})->name('theme');
 
 //SOCIALITE
 Route::get('login/{provider}', [LoginController::class, 'redirectToProvider']);
@@ -91,5 +93,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
     Route::resource('/posts', BlogController::class );
     Route::resource('/categories', CategoryController::class );
     Route::resource('/slides', SlideController::class );
+
+    Route::post('images', [ImageController::class, 'store'])->name('images.store');
+
 });
 

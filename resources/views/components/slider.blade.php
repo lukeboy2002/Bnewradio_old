@@ -1,4 +1,4 @@
-<div id="carouselExampleCaptions" class="carousel slide relative" data-bs-ride="carousel">
+<div id="carouselExampleCaptions" class="hidden md:block carousel slide relative" data-bs-ride="carousel">
     <div class="carousel-inner relative w-full overflow-hidden">
         @php $i = 1; @endphp
 
@@ -7,7 +7,7 @@
                 @php $i++; @endphp
                 <img
                     src="{{ asset('storage/'.$slide->image) }}"
-                    class="block w-full max-h-96 object-center object-cover"
+                    class="block w-full h-128 object-center object-cover"
                     alt="$slide->title"
                 />
                 <div class="absolute carousel-caption h-full hidden md:block text-center">

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Post;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
@@ -31,7 +34,11 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = Category::all();
+        return view('admin.posts.create')
+            ->with([
+                'categories' => $categories
+            ]);
     }
 
     /**
@@ -42,7 +49,32 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|max:25',
+            'category' => 'required',
+            'excerpt' => 'required|min:4',
+            'body' => 'required|min:6',
+            'image' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:1024', // 1MB Max
+        ]);
+
+        $slug = SlugService::createSlug(Post::class, 'slug', $request->title);
+
+        $post = POST::create([
+            'category_id' => $request->category,
+            'user_id' => request()->user()->id,
+            'title' => $request->title,
+            'slug' => $slug,
+            'excerpt' => $request->excerpt,
+            'body' => $request->body,
+        ]);
+
+        $request->image->storeAs('images/post', $post->id . '.' . $request->image->extension());
+
+        $post->update(['image' => 'images/post/'.$post->id . '.' . $request->image->extension()]);
+
+        $request->session()->flash('success', 'Permission added successfully');
+
+        return redirect()->route('posts');
     }
 
     /**
@@ -64,7 +96,14 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = Category::all();
+        $post = Post::findOrfail($id);
+
+        return view('admin.posts.edit')
+            ->with([
+                'post' => $post,
+                'categories' => $categories
+            ]);
     }
 
     /**
@@ -74,9 +113,42 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $previousImagePath = $post->image;
+
+        $this->validate($request, [
+            'title' => 'required|max:25',
+            'category' => 'required',
+            'excerpt' => 'required|min:4',
+            'body' => 'required|min:6',
+        ]);
+
+        $slug = SlugService::createSlug(Post::class, 'slug', $request->title);
+
+        $post -> update([
+            'category_id' => $request->category,
+            'user_id' => request()->user()->id,
+            'title' => $request->title,
+            'slug' => $slug,
+            'excerpt' => $request->excerpt,
+            'body' => $request->body,
+        ]);
+
+        if ($image = $request->file('image')) {
+            Storage::delete($previousImagePath);
+
+            $request->image->storeAs('images/post', $post->id . '.' . $request->image->extension());
+
+            $post->update(['image' => 'images/post/'.$post->id . '.' . $request->image->extension()]);
+
+        }else{
+            unset($request['image']);
+        }
+
+        $request->session()->flash('success', 'Blogpost successfully changed');
+
+        return redirect()->route('posts');
     }
 
     /**
@@ -85,8 +157,13 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+
+        $request->session()->flash('success', 'Blogpost successfully deleted');
+
+        return redirect()->route('posts');
     }
 }

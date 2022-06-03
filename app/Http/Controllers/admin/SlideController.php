@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Slide;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class SlideController extends Controller
 {
@@ -16,13 +15,7 @@ class SlideController extends Controller
      */
     public function index()
     {
-        $slides = Slide::all();
-
-        return view('admin.slides.index')
-            ->with([
-                'slides' => $slides,
-            ]);
-
+        return view('admin.slides.index');
     }
 
     /**
@@ -41,32 +34,8 @@ class SlideController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Slide $slide, Request $request)
+    public function store()
     {
-//        dd($request);
-
-        request()->validate([
-            'title'=>'required|string|max:40',
-            'subtitle'=>'required|string|max:100',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'nullable',
-        ]);
-
-        $slide = Slide::create([
-            'title' => request('title'),
-            'subtitle' => request('subtitle'),
-            'status' => request('status'),
-        ]);
-
-        if ($request->hasFile('image')) {
-            $slide->update([
-                'image' => $request->file('image')->store('images/slides')
-            ]);
-        }
-
-        $request->session()->flash('success, Slides has been created');
-
-        return redirect()->route('admin.slides.index');
     }
 
     /**
@@ -86,9 +55,11 @@ class SlideController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+
+    public function edit(Slide $slide)
     {
-        return view('admin.slides.edit');
+
+        return view('admin.slides.edit', compact('slide'));
     }
 
     /**

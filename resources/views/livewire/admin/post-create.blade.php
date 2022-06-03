@@ -28,7 +28,7 @@
             </div>
 
             <div class="w-full">
-                <x-form.textarea wire:model.defer="body" name="body" rows="5" placeholder="Write a description..." />
+                <x-form.textarea wire:model.defer="body" name="body" id="body" />
             </div>
 
             <div class="w-full">
@@ -75,3 +75,6 @@
     @endif
 
 </div>
+@push('scripts')
+    @include('admin.posts.ckeditor')
+@endpush

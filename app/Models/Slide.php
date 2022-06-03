@@ -9,12 +9,11 @@ class Slide extends Model
 {
     use HasFactory;
 
-//    protected $guarded = [];
-
     protected $fillable = [
         'image',
         'title',
         'subtitle',
         'status',
     ];
+
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('subtitle');
             $table->string('image')->nullable();
-            $table->boolean('status')->default(false);
+            $table->boolean('status')->nullable()->default(false);
             $table->timestamps();
         });
     }

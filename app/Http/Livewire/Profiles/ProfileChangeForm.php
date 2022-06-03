@@ -25,11 +25,15 @@ class ProfileChangeForm extends Component
     public function updatedAvatar()
     {
         $previousAvatarPath = auth()->user()->avatar;
+//        dd($previousAvatarPath);
 
         $pathAvatar = $this->avatar->store('images/avatars');
 
         auth()->user()->update(['avatar' => $pathAvatar]);
-        Storage::delete($previousAvatarPath);
+
+        if($previousAvatarPath !== "/images/avatars/user.png") {
+            Storage::delete($previousAvatarPath);
+        }
 
         session()->flash('status', 'Your avatar is successfully updated');
 
@@ -39,12 +43,13 @@ class ProfileChangeForm extends Component
     public function updatedProfileImage()
     {
         $previousProfileImagePath = auth()->user()->profile_img;
-//        dd($previousPath);
         $pathProfileImage = $this->profileimage->store('images/profiles');
-//        dd($path);
 
         auth()->user()->update(['profile_img' => $pathProfileImage]);
-        Storage::delete($previousProfileImagePath);
+
+        if($previousProfileImagePath !== "/images/profiles/default.jpeg") {
+            Storage::delete($previousAvatarPath);
+        }
 
         session()->flash('status', 'Your profile image successfully updated');
 

@@ -30,10 +30,12 @@ class CreateNewUser implements CreatesNewUsers
                 Rule::unique(User::class),
             ],
             'firstname' => [
+                'nullable',
                 'string',
                 'max:255',
             ],
             'lastname' => [
+                'nullable',
                 'string',
                 'max:255',
             ],
